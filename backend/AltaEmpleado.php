@@ -5,7 +5,7 @@ require_once "./clases/Empleado.php";
 use PDO\Empleado;
 use PDO\Usuario;
 
-$destino = "./empleados/fotos/" . date("ymd_His")."_". $_FILES["foto"]["name"];
+$destino = "./empleados/fotos/" . date("ymd_His")."_". $_POST["nombre"]. pathinfo($_FILES["foto"]["name"],PATHINFO_EXTENSION);
 
 function AgregarImagen($destino):bool
 {
@@ -72,12 +72,12 @@ $rtObj->mensaje = "No se pudo registar el/la empleado/a";
 if(AgregarImagen($destino))
 {
     $empleado = new Empleado();
-    $empleado->nombre = $_POST["nombre"];;
-    $empleado->correo = $_POST["correo"];;
-    $empleado->clave = $_POST["clave"];;
-    $empleado->id_perfil = $_POST["id_perfil"];;
+    $empleado->nombre = $_POST["nombre"];
+    $empleado->correo = $_POST["correo"];
+    $empleado->clave = $_POST["clave"];
+    $empleado->id_perfil = $_POST["id_perfil"];
     $empleado->foto = $destino;
-    $empleado->sueldo = $_POST["sueldo"];;
+    $empleado->sueldo = $_POST["sueldo"];
 
     if($empleado->Agregar())
     {

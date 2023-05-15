@@ -13,7 +13,7 @@ $objRt->exito = false;
 $objRt->mensaje = "No se pudo modificar el/la empleado/a";
 
 
-$destino = "./empleados/fotos/" . date("ymd_His")."_". $_FILES["foto"]["name"];
+$destino = "./empleados/fotos/" . date("ymd_His")."_". $_POST["nombre"]. pathinfo($_FILES["foto"]["name"],PATHINFO_EXTENSION);
 
 function AgregarImagen($destino):bool
 {
